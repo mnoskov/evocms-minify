@@ -19,7 +19,7 @@ php -d="memory_limit=-1" artisan vendor:publish
 ```
 @minify([
     'theme/vendor/jquery.min.js',
-    'theme/vendor//bootstrap.min.js',
+    'theme/vendor/bootstrap.min.js',
     'theme/vendor/jquery.fancybox.min.js',
     'theme/js/*.js',
 ])
