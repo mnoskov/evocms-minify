@@ -4,7 +4,7 @@
 
 ```
 php -d="memory_limit=-1" artisan package:installrequire mnoskov/evocms-minify "*"
-php artisan vendor:publish --provider=EvolutionCMS\Minify\MinifyServiceProvider
+php artisan vendor:publish --provider="EvolutionCMS\Minify\MinifyServiceProvider"
 ```
 
 ## Использование
