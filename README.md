@@ -1,6 +1,11 @@
-evo3
+<img src="https://img.shields.io/badge/PHP-%3E=7.3-green.svg?php=7.3"> <img src="https://img.shields.io/badge/EVO-%3E%3D3.1.3-green">
 
-php -d="memory_limit=-1" artisan vendor:publish
+## Установка
+
+```
+php -d="memory_limit=-1" artisan package:installrequire mnoskov/evocms-minify "*"
+php artisan vendor:publish --provider="EvolutionCMS\Minify\MinifyServiceProvider"
+```
 
 ## Использование
 
