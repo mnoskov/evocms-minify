@@ -184,6 +184,10 @@ class Minify
             $result[$extension][] = $file;
         }
 
+        $result = array_map(function($group) {
+            return array_unique($group);
+        }, $result);
+
         return $result;
     }
 
@@ -251,7 +255,8 @@ class Minify
 
         if ($this->isFilesChanged($files)) {
             $output = $this->processFileGroups($groups);
-            return Cache::put($hash, $output);
+            Cache::put($hash, $output);
+            return $output;
         }
 
         return Cache::rememberForever($hash, function() use ($groups) {
