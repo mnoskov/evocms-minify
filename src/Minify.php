@@ -88,7 +88,7 @@ class Minify
             $mapFile  = $this->targetPath . $cssFile . '.map';
 
             $parser = new Less_Parser([
-                'compress'  => false,
+                'compress'  => true,
                 'sourceMap' => true,
                 'sourceMapWriteTo' => MODX_BASE_PATH . $mapFile,
                 'sourceMapURL'     => MODX_BASE_URL . $mapFile,
@@ -98,7 +98,7 @@ class Minify
 
             $this->setVariablesFromFiles($parser, $vars);
 
-            $parser->parseFile(MODX_BASE_PATH . $file, $this->targetPath);
+            $parser->parseFile(MODX_BASE_PATH . $file, MODX_BASE_URL . $this->targetPath);
 
             foreach ($files as $file) {
                 $parser->parseString('@import "' . $file . '";');
