@@ -162,7 +162,7 @@ class Minify
                 foreach (glob($mask) as $file) {
                     $result[] = $file;
                 }
-            } else {
+            } else if (is_readable(MODX_BASE_PATH . $mask)) {
                 $result[] = $mask;
             }
         }
