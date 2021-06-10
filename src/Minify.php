@@ -20,7 +20,7 @@ class Minify
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;
-        $this->setTargetPath(config('minify.path'));
+        $this->setTargetPath(config('minify.path', 'theme/compiled'));
     }
 
     public function setTargetPath($path)
@@ -28,7 +28,7 @@ class Minify
         $this->targetPath = trim($path, '/') . '/';
 
         if (!is_dir(MODX_BASE_PATH . $this->targetPath)) {
-            $this->filesystem->makeDirectory(MODX_BASE_PATH . $this->targetPath);
+            $this->filesystem->makeDirectory(MODX_BASE_PATH . $this->targetPath, 0755, true);
         }
     }
 

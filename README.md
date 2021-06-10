@@ -4,6 +4,10 @@
 
 ```
 php -d="memory_limit=-1" artisan package:installrequire mnoskov/evocms-minify "*"
+```
+
+Если путь для генерируемых файлов отличается от `/theme/compiled`, нужно получить конфиг из пакета в `/core/custom/config/minify.php` и изменить путь в нем.
+```
 php artisan vendor:publish --provider="EvolutionCMS\Minify\MinifyServiceProvider"
 ```
 
