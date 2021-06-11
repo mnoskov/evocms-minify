@@ -88,7 +88,7 @@ class Minify
             $mapFile  = $this->targetPath . $cssFile . '.map';
 
             $parser = new Less_Parser([
-                'compress'  => true,
+                'compress'  => false,
                 'sourceMap' => true,
                 'sourceMapWriteTo' => MODX_BASE_PATH . $mapFile,
                 'sourceMapURL'     => MODX_BASE_URL . $mapFile,
