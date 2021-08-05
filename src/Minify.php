@@ -166,7 +166,7 @@ class Minify
         return $result;
     }
 
-    public function minifyStyles($files, $minify = true)
+    public function minifyStyles($files, $minify = true, $disableCaching = true)
     {
         if ($minify) {
             $css = new CSS($files);
@@ -177,10 +177,11 @@ class Minify
 
         return View::make('minify::result', [
             'css' => $files,
+            'suffix' => $disableCaching ? '?' . time() : '',
         ])->toHtml();
     }
 
-    public function minifyScripts($files, $minify = true)
+    public function minifyScripts($files, $minify = true, $disableCaching = true)
     {
         if ($minify) {
             $js = new JS($files);
@@ -191,6 +192,7 @@ class Minify
 
         return View::make('minify::result', [
             'js' => $files,
+            'suffix' => $disableCaching ? '?' . time() : '',
         ])->toHtml();
     }
 
@@ -247,14 +249,16 @@ class Minify
         }
 
         $isLoggedIn = evo()->isLoggedIn('mgr');
+        $minify = $isLoggedIn ? config('minify.enable_minify_for_managers', false) : config('minify.enable_minify', true);
+        $disableCaching = $isLoggedIn ? config('minify.disable_caching_for_managers', false) : config('minify.disable_caching', true);
         $output = '';
 
         if (!empty($groups['css'])) {
-            $output .= $this->minifyStyles($groups['css'], !$isLoggedIn);
+            $output .= $this->minifyStyles($groups['css'], $minify, $disableCaching);
         }
 
         if (!empty($groups['js'])) {
-            $output .= $this->minifyScripts($groups['js'], !$isLoggedIn);
+            $output .= $this->minifyScripts($groups['js'], $minify, $disableCaching);
         }
 
         return $output;
